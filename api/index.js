@@ -8,8 +8,8 @@ export default async function handler(req, res) {
     
     const badgeUrl = `https://img.shields.io/badge/Profile_Views-${count}-38BDF8?style=for-the-badge&logo=eye&logoColor=white&labelColor=0D1117`;
     
-    // Tell GitHub and CDNs to cache for max 10 seconds before checking for a new count
-    res.setHeader('Cache-Control', 'public, max-age=10, s-maxage=10, stale-while-revalidate=59');
+    // Force GitHub and CDNs to expire the cache every 2 seconds
+    res.setHeader('Cache-Control', 'public, max-age=2, s-maxage=2, stale-while-revalidate=5');
     
     return res.redirect(302, badgeUrl);
   } catch (error) {
